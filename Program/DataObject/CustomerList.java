@@ -68,19 +68,19 @@ public class CustomerList extends ArrayList<Customer> {
         }
         if (matchingCust.isEmpty()) {
             System.out.println("No one matches the search criteria!");
+            return;
         }
+        matchingCust.sort(Comparator.comparing(Customer::getCustName));
+        System.out.println("--------------------------------------------------------------------");
+        System.out.format("%-10s|%-20s|%-20s|%-20s\n", "Code",
+                "Customer Name",
+                "Phone", "Email");
         for (Customer cust : matchingCust) {
-            matchingCust.sort(Comparator.comparing(Customer::getCustName));
-            System.out.println("--------------------------------------------------------------------");
-            System.out.format("%-10s|%-20s|%-20s|%-20s\n", "Code",
-                    "Customer Name",
-                    "Phone", "Email");
-            System.out.println("--------------------------------------------------------------------");
             System.out.format("%-10s|%-20s|%-20s|%-20s\n", cust.getCustCode(),
                     cust.getCustName(),
                     cust.getCustPhoneNumber(), cust.getCustEmail());
-            System.out.println("--------------------------------------------------------------------");
-        }
+                }
+        System.out.println("--------------------------------------------------------------------");
     }
 
     public void displayCustomer() {
