@@ -5,8 +5,10 @@ import java.util.Date;
 public class Order {
     int id;
     private String custCode, menuCode;
+    private int price;
     private int numberOfTables;
     private Date preferredDate;
+    private int totalPrice;
 
     public Order(String custCode, String menuCode, int numberOfTables, Date preferredDate) {
         this.custCode = custCode;
@@ -19,12 +21,15 @@ public class Order {
         this.id = id;
     }
 
-    public Order(int id, String custCode, String menuCode, int numberOfTables, Date preferredDate) {
+    public Order(int id, String custCode, String menuCode, int price, int numberOfTables, Date preferredDate,
+            int totalPrice) {
         this.id = id;
         this.custCode = custCode;
         this.menuCode = menuCode;
+        this.price = price;
         this.numberOfTables = numberOfTables;
         this.preferredDate = preferredDate;
+        this.totalPrice = totalPrice;
     }
 
     public Order(Customer cust, FeastMenu menu) {
@@ -67,6 +72,26 @@ public class Order {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
 }
