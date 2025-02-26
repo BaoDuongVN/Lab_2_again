@@ -3,10 +3,12 @@ package Program.DataObject;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 import Program.core.Customer;
 import Program.tools.ConsoleInputter;
@@ -30,7 +32,7 @@ public class CustomerList extends ArrayList<Customer> {
     public void UpdateCust() {
         String custCode = ConsoleInputter.getStr("Enter a customer code (C, G, K)", "^[C|G|K|c|g|k]\\d{4}",
                 "Your entered code is error! Please enter again!");
-        int pos = 0;
+        int pos = -1;
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i).getCustCode().equalsIgnoreCase(custCode)) {
                 pos = i;
@@ -79,7 +81,7 @@ public class CustomerList extends ArrayList<Customer> {
             System.out.format("%-10s|%-20s|%-20s|%-20s\n", cust.getCustCode(),
                     cust.getCustName(),
                     cust.getCustPhoneNumber(), cust.getCustEmail());
-                }
+        }
         System.out.println("--------------------------------------------------------------------");
     }
 
@@ -122,6 +124,19 @@ public class CustomerList extends ArrayList<Customer> {
         } catch (Exception e) {
             System.out.println(e); // In thông báo lỗi
         }
+    }
+
+    public CustomerList getCustomer() {
+        return this;
+    }
+
+    public Customer findCustomerByCode(String custCode) {
+        for (Customer customer : this) {
+            if (customer.getCustCode().equalsIgnoreCase(custCode)) {
+                return customer; // Return the customer if found
+            }
+        }
+        return null; // Return null if no matching customer is found
     }
 
 }
